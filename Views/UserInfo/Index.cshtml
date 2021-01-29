@@ -1,0 +1,74 @@
+﻿
+@model TaskDone_V2.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "User Information:";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ var name = Model.FirstName + " " + Model.LastName;}
+
+
+<br>
+<br>
+<h2>Hello @name</h2>
+<br>
+
+<div class="media-body">
+    <a class="media" href="@Url.Action("ChangeUserPhotos", "UserInfo",new { @Model.Id })">
+        <img src="@Url.Action("UserPhotos", "UserInfo" )" style="width:170px;height:170px; background: #FFFFFF;
+    margin: auto;
+    -moz-border-radius: 60px;
+    border-radius: 100px;
+    padding: 6px;
+    box-shadow: 0px 0px 20px #888;" />
+    </a>
+</div>
+
+<br>
+
+<div>
+    <p>
+        @Html.ActionLink("Edit Profile", "Edit", "UserInfo", new { @Model.Id }, new { @class = "badge badge-pill badge-success" })
+
+        @Html.ActionLink("My Projects", "UserProjects", "Projects", new { @Model.Id }, new { @class = "badge badge-pill badge-success" })
+
+        @Html.ActionLink("My Offers", "UserOffers", "Offers", new { @Model.Id }, new { @class = "badge badge-pill badge-success" })
+        
+
+
+    </p>
+</div>
+
+
+<table id="movies" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Company Name</th>
+            <th>Date of Birth</th>
+            <th>Address </th>
+            <th>Addrees 2 Name</th>
+            <th>State</th>
+            <th>Zip Code</th>
+        </tr>
+
+
+        <tr>
+            <td> @Model.FirstName</td>
+            <td> @Model.LastName</td>
+            <td> @Model.CompanyName</td>
+            <td> @Model.BirthDate</td>
+            <td> @Model.StreetAddress</td>
+            <td> @Model.StreetAddress2</td>
+            <td> @Model.State</td>
+            <td> @Model.ZipCode</td>
+
+        </tr>
+
+
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+

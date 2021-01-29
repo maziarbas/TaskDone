@@ -1,0 +1,78 @@
+﻿@model IEnumerable<TaskDone_V2.Models.Project>
+
+@{
+    ViewBag.Title = "Projects List";
+}
+
+<h2>List Of All Projects</h2>
+
+
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Project Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+
+        <th>
+            @Html.ActionLink("Catgory", "Index", new { sortOrder = ViewBag.CategorySortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Preffered Price", "Index", new { sortOrder = ViewBag.PriceSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Posted Date", "Index", new { sortOrder = ViewBag.DateSortParm })
+        </th>
+        <th>
+            @Html.DisplayName("Contact Poster ")
+        </th>
+        <th>
+            @Html.DisplayName("Poster Profile")
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Category.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ProposedPrice)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.DateCreated)
+    </td>
+
+    <td>
+        <a a target="_blank" rel="noopener noreferrer" class="badge badge-pill badge-success" href="@string.Format("mailto:{0}", item.UserEmail)">Contact Me!</a>
+    </td>
+    <td>
+        @Html.ActionLink("User Profile", "UserPublicProfile", "UserInfo", new { userEmail = item.UserEmail }, new { target = "_self", @class = "badge badge-pill badge-success" })
+    </td>
+    <td>
+        @{string statusName = (item.Status.Name);}
+        @if (statusName == "Active")
+        {
+            @Html.ActionLink("Offer It!", "Create", "Offers", new { id = item.Id }, new { target = "_self", @class = "badge badge-pill badge-success" })
+            @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "badge badge-pill badge-success" })
+        }
+
+    </td>
+</tr>
+    }
+
+</table>

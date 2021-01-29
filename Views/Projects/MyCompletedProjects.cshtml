@@ -1,0 +1,71 @@
+﻿@model IEnumerable<TaskDone_V2.Models.Project>
+
+@{
+    ViewBag.Title = "User Completed Projects";
+}
+
+<h2>My Completed Projects </h2>
+<div>
+    @using (Html.BeginForm())
+    {
+        <p>
+            Find by: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+        </p>
+    }
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Category", "MyCompletedProjects", new { sortOrder = ViewBag.CategorySortParm })
+        </th>
+       
+        <th>
+            @Html.ActionLink("Project Name", "MyCompletedProjects", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+       
+        <th>
+            @Html.ActionLink("Posted Date", "MyCompletedProjects", new { sortOrder = ViewBag.DateSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Finish Date", "MyCompletedProjects", new { sortOrder = ViewBag.FinishDateSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Final Price", "MyCompletedProjects", new { sortOrder = ViewBag.PriceSortParm })
+        </th>
+        
+            
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Category.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.IsVolunteer)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateCreated)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateFinished)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.AcceptedPrice)
+    </td>
+    <td>
+
+        @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "badge badge-pill badge-success" })
+        @Html.ActionLink("Rate Helpee", "RateHelpee","UserInfo", new { id = item.Id }, new { @class = "badge badge-pill badge-success" })
+
+    </td>
+</tr>
+    }
+
+</table>

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<TaskDone_V2.Models.Category>
+
+@{
+    ViewBag.Title = "Categories";
+}
+
+<h2>List of Categories</h2>
+
+<table class="table">
+    <tr>
+        <th>
+           
+            @Html.DisplayNameFor(model => model.Name)
+
+        </th>
+        <th>
+            
+            @Html.DisplayNameFor(model => model.ProjectCount)
+            
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+
+    <td>
+        @{string modelName = (item.Name);}
+        @Html.ActionLink(modelName, "ListProjectsPerCategory", "Projects", new { id = item.Id, modelName }, new { @class = "badge badge-pill badge-success" })
+
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ProjectCount)
+
+    </td>
+</tr>
+            }
+
+</table>

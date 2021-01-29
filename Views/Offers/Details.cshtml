@@ -1,0 +1,49 @@
+﻿@model TaskDone_V2.Models.Offer
+
+@{
+    ViewBag.Title = Model.Project.Name + "Offer Details";
+}
+
+<h2>@Model.Project.Name Offer Details</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.UserEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.UserEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OfferedPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OfferedPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OfferedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OfferedDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+   @Html.ActionLink("Back to List", "UserOffers", null,new { @class = "badge badge-pill badge-success" })
+</p>

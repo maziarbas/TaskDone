@@ -1,0 +1,50 @@
+﻿@model TaskDone_V2.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Change User Photo";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("ChangeUserPhotos", "UserInfo", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.UserPhoto, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+
+                @Html.TextBoxFor(m => m.UserPhoto, new { @type = "file" })
+            </div>
+        </div>
+    </div>
+    <div class="media-body">
+        <a class="media" href="@Url.Action("ChangeUserPhotos", "UserInfo",new { @Model.Id })">
+            <img src="@Url.Action("UserPhotos", "UserInfo" )" style="width:170px;height:170px; background: #FFFFFF;
+    margin: auto;
+    -moz-border-radius: 60px;
+    border-radius: 100px;
+    padding: 6px;
+    box-shadow: 0px 0px 20px #888;" />
+        </a>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-success" value="Update Photo" />
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index", new { @class = "badge badge-pill badge-success" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

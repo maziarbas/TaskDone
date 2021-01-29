@@ -1,0 +1,56 @@
+﻿@model IEnumerable<TaskDone_V2.Models.Offer>
+
+@{
+    ViewBag.Title = "Project Offers";
+}
+
+<h2>Project Offers</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Project.UserEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OfferedPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OfferedDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.UserEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OfferedPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OfferedDate)
+        </td>
+       
+        <td>
+            @if (item.Project.AcceptedPrice == null)
+            {
+                @Html.ActionLink("Accept It", "Accept", new { id = item.Id }, new { @class = "badge badge-pill badge-success" })
+            }
+            else
+            {
+                @Html.ActionLink("Accepted Offer Detail", "Detail", new { id = item.Id }, new { @class = "badge badge-pill badge-success" })
+            }
+
+
+        </td>
+    </tr>
+}
+
+</table>

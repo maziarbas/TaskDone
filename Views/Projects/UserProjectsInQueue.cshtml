@@ -1,0 +1,91 @@
+﻿@model IEnumerable<TaskDone_V2.Models.Project>
+
+@{
+    ViewBag.Title = "User Projects";
+}
+
+<h2>My In Queue Projects </h2>
+<div>
+    @using (Html.BeginForm())
+    {
+        <p>
+            Find by: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+        </p>
+    }
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Category", "UserProjectsInQueue", new { sortOrder = ViewBag.CategorySortParm })
+        </th>
+       
+        <th>
+            @Html.ActionLink("Project Name", "UserProjectsInQueue", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsVolunteer)
+        </th>
+        <th>
+            @Html.ActionLink("Posted Date", "UserProjectsInQueue", new { sortOrder = ViewBag.DateSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Desired Finish Date", "UserProjectsInQueue", new { sortOrder = ViewBag.FinishDateSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Preffered Price", "UserProjectsInQueue", new { sortOrder = ViewBag.PriceSortParm })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AcceptedPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Category.Name)
+    </td>
+   
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.IsVolunteer)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateCreated)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateFinished)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ProposedPrice)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.AcceptedPrice)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Status.Name)
+    </td>
+    <td>
+
+        @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "badge badge-pill badge-success" })
+        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "badge badge-pill badge-success" })
+
+    </td>
+</tr>
+    }
+
+</table>

@@ -1,0 +1,56 @@
+﻿@model TaskDone_V2.Models.Offer
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Offer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.UserEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.UserEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OfferedPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OfferedPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OfferedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OfferedDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-success" /> |
+            @Html.ActionLink("Back to List", "Index", new {@class = "badge badge-pill badge-success" })
+        </div>
+    }
+</div>
